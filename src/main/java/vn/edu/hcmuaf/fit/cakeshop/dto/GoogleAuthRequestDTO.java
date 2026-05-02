@@ -5,7 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AuthRequestDTO {
-    private String username;
-    private String password;
+public class GoogleAuthRequestDTO {
+    private String idToken;
 }
