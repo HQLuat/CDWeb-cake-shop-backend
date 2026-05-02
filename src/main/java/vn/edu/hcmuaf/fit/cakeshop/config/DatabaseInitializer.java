@@ -5,8 +5,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import vn.edu.hcmuaf.fit.cakeshop.entity.User;
-import vn.edu.hcmuaf.fit.cakeshop.entity.UserRole;
-import vn.edu.hcmuaf.fit.cakeshop.entity.UserStatus;
+import vn.edu.hcmuaf.fit.cakeshop.entity.enums.UserRole;
+import vn.edu.hcmuaf.fit.cakeshop.entity.enums.UserStatus;
 import vn.edu.hcmuaf.fit.cakeshop.repository.UserRepository;
 
 @Component

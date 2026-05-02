@@ -2,6 +2,8 @@ package vn.edu.hcmuaf.fit.cakeshop.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import vn.edu.hcmuaf.fit.cakeshop.entity.enums.UserRole;
+import vn.edu.hcmuaf.fit.cakeshop.entity.enums.UserStatus;
 
 @Entity
 @Table(name = "users")
@@ -14,7 +16,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String username;
     private String password;
