@@ -37,6 +37,9 @@ dependencies {
 
 	// Google
 	implementation 'com.google.api-client:google-api-client:2.2.0'
+
+	// validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
 tasks.named('test') {

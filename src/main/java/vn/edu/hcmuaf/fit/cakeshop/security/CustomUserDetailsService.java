@@ -8,9 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.entity.User;
-import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.entity.enums.UserStatus;
-import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.repository.UserRepository;
+import vn.edu.hcmuaf.fit.cakeshop.modules.user.domain.entity.User;
+import vn.edu.hcmuaf.fit.cakeshop.modules.user.domain.entity.enums.UserStatus;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.repository.AuthRepository;
 
 import java.util.Collections;
 
@@ -18,7 +18,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final AuthRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
