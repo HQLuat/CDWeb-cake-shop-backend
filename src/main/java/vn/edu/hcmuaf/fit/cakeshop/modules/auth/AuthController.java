@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.cakeshop.controller;
+package vn.edu.hcmuaf.fit.cakeshop.modules.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import vn.edu.hcmuaf.fit.cakeshop.common.ApiResponse;
-import vn.edu.hcmuaf.fit.cakeshop.dto.GoogleAuthRequestDTO;
-import vn.edu.hcmuaf.fit.cakeshop.dto.LoginRequestDTO;
-import vn.edu.hcmuaf.fit.cakeshop.dto.LoginResponseDTO;
-import vn.edu.hcmuaf.fit.cakeshop.dto.RegisterRequestDTO;
-import vn.edu.hcmuaf.fit.cakeshop.service.AuthService;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.dto.GoogleAuthRequestDTO;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.dto.LoginRequestDTO;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.dto.LoginResponseDTO;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.dto.RegisterRequestDTO;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.service.AuthService;
 
 @RestController
 @RequestMapping("/api/auth")

@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.cakeshop.service.impl;
+package vn.edu.hcmuaf.fit.cakeshop.modules.auth.service.impl;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
@@ -11,17 +11,17 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import vn.edu.hcmuaf.fit.cakeshop.dto.GoogleAuthRequestDTO;
-import vn.edu.hcmuaf.fit.cakeshop.dto.LoginRequestDTO;
-import vn.edu.hcmuaf.fit.cakeshop.dto.LoginResponseDTO;
-import vn.edu.hcmuaf.fit.cakeshop.dto.RegisterRequestDTO;
-import vn.edu.hcmuaf.fit.cakeshop.entity.User;
-import vn.edu.hcmuaf.fit.cakeshop.entity.enums.UserRole;
-import vn.edu.hcmuaf.fit.cakeshop.entity.enums.UserStatus;
-import vn.edu.hcmuaf.fit.cakeshop.repository.UserRepository;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.dto.GoogleAuthRequestDTO;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.dto.LoginRequestDTO;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.dto.LoginResponseDTO;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.dto.RegisterRequestDTO;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.entity.User;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.entity.enums.UserRole;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.entity.enums.UserStatus;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.repository.UserRepository;
 import vn.edu.hcmuaf.fit.cakeshop.security.CustomUserDetailsService;
 import vn.edu.hcmuaf.fit.cakeshop.security.JwtService;
-import vn.edu.hcmuaf.fit.cakeshop.service.AuthService;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.service.AuthService;
 
 import java.util.Collections;
 import java.util.UUID;

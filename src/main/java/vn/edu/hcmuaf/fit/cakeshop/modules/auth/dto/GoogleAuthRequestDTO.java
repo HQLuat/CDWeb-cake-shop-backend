@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.cakeshop.dto;
+package vn.edu.hcmuaf.fit.cakeshop.modules.auth.dto;
 
 import lombok.Getter;
 import lombok.Setter;

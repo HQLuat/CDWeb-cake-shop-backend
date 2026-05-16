@@ -1,9 +1,9 @@
-package vn.edu.hcmuaf.fit.cakeshop.entity;
+package vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import vn.edu.hcmuaf.fit.cakeshop.entity.enums.UserRole;
-import vn.edu.hcmuaf.fit.cakeshop.entity.enums.UserStatus;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.entity.enums.UserRole;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.entity.enums.UserStatus;
 
 @Entity
 @Table(name = "users")

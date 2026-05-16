@@ -8,9 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import vn.edu.hcmuaf.fit.cakeshop.entity.User;
-import vn.edu.hcmuaf.fit.cakeshop.entity.enums.UserStatus;
-import vn.edu.hcmuaf.fit.cakeshop.repository.UserRepository;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.entity.User;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.entity.enums.UserStatus;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.repository.UserRepository;
 
 import java.util.Collections;
 
