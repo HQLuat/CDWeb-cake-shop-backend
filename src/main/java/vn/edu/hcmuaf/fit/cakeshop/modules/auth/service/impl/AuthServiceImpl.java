@@ -15,10 +15,10 @@ import vn.edu.hcmuaf.fit.cakeshop.modules.auth.dto.GoogleAuthRequestDTO;
 import vn.edu.hcmuaf.fit.cakeshop.modules.auth.dto.LoginRequestDTO;
 import vn.edu.hcmuaf.fit.cakeshop.modules.auth.dto.LoginResponseDTO;
 import vn.edu.hcmuaf.fit.cakeshop.modules.auth.dto.RegisterRequestDTO;
-import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.entity.User;
-import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.entity.enums.UserRole;
-import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.entity.enums.UserStatus;
-import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.repository.UserRepository;
+import vn.edu.hcmuaf.fit.cakeshop.modules.user.domain.entity.User;
+import vn.edu.hcmuaf.fit.cakeshop.modules.user.domain.entity.enums.UserRole;
+import vn.edu.hcmuaf.fit.cakeshop.modules.user.domain.entity.enums.UserStatus;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.repository.AuthRepository;
 import vn.edu.hcmuaf.fit.cakeshop.security.CustomUserDetailsService;
 import vn.edu.hcmuaf.fit.cakeshop.security.JwtService;
 import vn.edu.hcmuaf.fit.cakeshop.modules.auth.service.AuthService;
@@ -36,7 +36,7 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final CustomUserDetailsService customUserDetailsService;
     private final JwtService jwtService;
-    private final UserRepository userRepository;
+    private final AuthRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
