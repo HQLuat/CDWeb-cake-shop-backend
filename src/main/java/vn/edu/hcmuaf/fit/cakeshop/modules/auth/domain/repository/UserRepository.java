@@ -1,7 +1,7 @@
-package vn.edu.hcmuaf.fit.cakeshop.repository;
+package vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import vn.edu.hcmuaf.fit.cakeshop.entity.User;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.entity.User;
 
 import java.util.Optional;
 
