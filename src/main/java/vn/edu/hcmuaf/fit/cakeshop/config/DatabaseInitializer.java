@@ -4,16 +4,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import vn.edu.hcmuaf.fit.cakeshop.entity.User;
-import vn.edu.hcmuaf.fit.cakeshop.entity.enums.UserRole;
-import vn.edu.hcmuaf.fit.cakeshop.entity.enums.UserStatus;
-import vn.edu.hcmuaf.fit.cakeshop.repository.UserRepository;
+import vn.edu.hcmuaf.fit.cakeshop.modules.user.domain.entity.User;
+import vn.edu.hcmuaf.fit.cakeshop.modules.user.domain.entity.enums.UserRole;
+import vn.edu.hcmuaf.fit.cakeshop.modules.user.domain.entity.enums.UserStatus;
+import vn.edu.hcmuaf.fit.cakeshop.modules.auth.domain.repository.AuthRepository;
 
 @Component
 @RequiredArgsConstructor
 public class DatabaseInitializer implements CommandLineRunner {
 
-    private final UserRepository userRepository;
+    private final AuthRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
