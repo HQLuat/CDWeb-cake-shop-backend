@@ -2,6 +2,8 @@ package vn.edu.hcmuaf.fit.cakeshop.modules.product.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -42,9 +44,11 @@ public class Product {
 
     private Boolean freshGuarantee = true;
 
+    @BatchSize(size = 30)
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ProductImage> images;
 
+    @BatchSize(size = 30)
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Review> reviews;
 }
