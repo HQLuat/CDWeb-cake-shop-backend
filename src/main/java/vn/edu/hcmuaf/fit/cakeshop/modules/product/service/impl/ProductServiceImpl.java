@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.cakeshop.modules.product.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vn.edu.hcmuaf.fit.cakeshop.modules.product.dto.ProductDetailDTO;
@@ -12,6 +13,8 @@ import vn.edu.hcmuaf.fit.cakeshop.modules.product.domain.entity.Review;
 import vn.edu.hcmuaf.fit.cakeshop.modules.product.domain.repository.ProductRepository;
 import vn.edu.hcmuaf.fit.cakeshop.modules.product.domain.repository.ReviewRepository;
 import vn.edu.hcmuaf.fit.cakeshop.modules.product.service.ProductService;
+import vn.edu.hcmuaf.fit.cakeshop.modules.user.domain.entity.User;
+import vn.edu.hcmuaf.fit.cakeshop.modules.user.domain.repository.UserRepository;
 
 import java.util.List;
 
@@ -21,6 +24,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final ReviewRepository reviewRepository;
+    private final UserRepository userRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -62,9 +66,14 @@ public class ProductServiceImpl implements ProductService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy sản phẩm với id: " + productId));
 
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy người dùng: " + username));
+
         Review review = Review.builder()
                 .product(product)
-                .customerName(reviewDTO.customerName())
+                .customerName(user.getFullName())
                 .rating(reviewDTO.rating())
                 .comment(reviewDTO.comment())
                 .build();
