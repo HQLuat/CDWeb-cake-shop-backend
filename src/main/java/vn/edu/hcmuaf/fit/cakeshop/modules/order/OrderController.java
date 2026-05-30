@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.hcmuaf.fit.cakeshop.common.ApiResponse;
 import vn.edu.hcmuaf.fit.cakeshop.modules.order.domain.entity.enums.OrderStatus;
+import vn.edu.hcmuaf.fit.cakeshop.modules.order.domain.entity.enums.PaymentStatus;
 import vn.edu.hcmuaf.fit.cakeshop.modules.order.dto.CreateOrderRequest;
 import vn.edu.hcmuaf.fit.cakeshop.modules.order.dto.OrderResponse;
 import vn.edu.hcmuaf.fit.cakeshop.modules.order.service.OrderService;
@@ -41,10 +42,16 @@ public class OrderController {
      * Lấy danh sách đơn hàng của user hiện tại
      */
     @GetMapping
-    public ResponseEntity<ApiResponse<List<OrderResponse>>> getMyOrders() {
+    public ResponseEntity<ApiResponse<List<OrderResponse>>> getMyOrders(
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false) OrderStatus orderStatus,
+            @RequestParam(required = false) PaymentStatus paymentStatus,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
         return ResponseEntity.ok(ApiResponse.success(
                 "Lấy danh sách đơn hàng thành công",
-                orderService.getMyOrders()
+                orderService.getMyOrders(keyword, orderStatus, paymentStatus, page, size)
         ));
     }
 
@@ -66,10 +73,16 @@ public class OrderController {
      */
     @GetMapping("/admin")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<ApiResponse<List<OrderResponse>>> getAllOrders() {
+    public ResponseEntity<ApiResponse<List<OrderResponse>>> getAllOrders(
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false) OrderStatus orderStatus,
+            @RequestParam(required = false) PaymentStatus paymentStatus,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
         return ResponseEntity.ok(ApiResponse.success(
                 "Lấy toàn bộ danh sách đơn hàng thành công",
-                orderService.getAllOrders()
+                orderService.getAllOrders(keyword, orderStatus, paymentStatus, page, size)
         ));
     }
 
