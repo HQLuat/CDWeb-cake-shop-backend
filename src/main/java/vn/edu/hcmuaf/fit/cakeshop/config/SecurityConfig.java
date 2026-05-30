@@ -48,6 +48,7 @@ public class SecurityConfig {
                         // Public
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/products/**").permitAll()
+                        .requestMatchers("/api/payment/vnpay/return").permitAll()
 
                         // Swagger
                         .requestMatchers(
