@@ -41,6 +41,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public LoginResponseDTO login(LoginRequestDTO request) {
+        User user = userRepository.findByUsername(request.getUsername())
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy tài khoản"));
+
         // check username, password
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
@@ -55,6 +58,7 @@ public class AuthServiceImpl implements AuthService {
         return LoginResponseDTO.builder()
                 .username(userDetails.getUsername())
                 .token(token)
+                .role(user.getRole())
                 .build();
     }
 
@@ -118,6 +122,7 @@ public class AuthServiceImpl implements AuthService {
                 return LoginResponseDTO.builder()
                         .username(user.getUsername())
                         .token(token)
+                        .role(user.getRole())
                         .build();
             } else {
                 throw new RuntimeException("Token Google không hợp lệ");
