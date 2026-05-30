@@ -11,11 +11,14 @@ VALUES (
            'Bơ hữu cơ AOP,Bột mì thượng hạng,Phô mai tươi,Trứng gà thả vườn',
            true
        );
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (1, 'https://images.unsplash.com/photo-1586788224331-947f68671cf1?w=800', 0);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (1, 'https://images.unsplash.com/photo-1562440499-64c9a111f713?w=800', 1);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (1, 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=800', 2);
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (1, 'Nguyễn Thị Lan', 5, 'Bánh ngon tuyệt vời, kem cheese rất mịn!', NOW());
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (1, 'Trần Văn Minh', 5, 'Giao hàng nhanh, bánh còn tươi, sẽ ủng hộ tiếp!', NOW());
+
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Red Velvet Muse Cake' LIMIT 1), 'https://i.pinimg.com/736x/df/91/15/df9115d746533697591d7c37d93ccf8c.jpg', 0);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Red Velvet Muse Cake' LIMIT 1), 'https://i.pinimg.com/736x/79/0c/8b/790c8b07d5869dee8ceab42ea5ed8d8f.jpg', 1);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Red Velvet Muse Cake' LIMIT 1), 'https://i.pinimg.com/736x/50/94/5c/50945cc192b4c0d8cb37669447fe2531.jpg', 2);
+
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Red Velvet Muse Cake' LIMIT 1), 'Nguyễn Thị Lan', 5, 'Bánh ngon tuyệt vời, kem cheese rất mịn!', NOW());
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Red Velvet Muse Cake' LIMIT 1), 'Trần Văn Minh', 5, 'Giao hàng nhanh, bánh còn tươi, sẽ ủng hộ tiếp!', NOW());
+
 
 -- ==================== SẢN PHẨM 2 ====================
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
@@ -30,11 +33,14 @@ VALUES (
            'Socola Bỉ 70%,Phô mai Philadelphia,Kem tươi,Bơ nhạt,Đường nâu',
            true
        );
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (2, 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=800', 0);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (2, 'https://images.unsplash.com/photo-1606313564200-e75d5e30ef07?w=800', 1);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (2, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800', 2);
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (2, 'Lê Thị Hoa', 5, 'Socola đậm đà, cheesecake không bị ngấy. Cực phẩm!', NOW());
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (2, 'Phạm Quốc Bảo', 4, 'Ngon lắm, lần sau sẽ order thêm!', NOW());
+
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Chocolate Fudge Truffle Cheesecake' LIMIT 1), 'https://i.pinimg.com/736x/16/46/3d/16463d7aa39c47d3f720ef0ec932c885.jpg', 0);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Chocolate Fudge Truffle Cheesecake' LIMIT 1), 'https://i.pinimg.com/736x/9e/8f/60/9e8f6043aa8932de53eac9063c945a36.jpg', 1);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Chocolate Fudge Truffle Cheesecake' LIMIT 1), 'https://i.pinimg.com/1200x/0a/b8/35/0ab835e98e4a2d2081bed5bf3882f1d5.jpg', 2);
+
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Chocolate Fudge Truffle Cheesecake' LIMIT 1), 'Lê Thị Hoa', 5, 'Socola đậm đà, cheesecake không bị ngấy. Cực phẩm!', NOW());
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Chocolate Fudge Truffle Cheesecake' LIMIT 1), 'Phạm Quốc Bảo', 4, 'Ngon lắm, lần sau sẽ order thêm!', NOW());
+
 
 -- ==================== SẢN PHẨM 3 ====================
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
@@ -49,11 +55,14 @@ VALUES (
            'Bột mì hữu cơ,Men tự nhiên sourdough,Muối biển,Nước lọc',
            true
        );
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (3, 'https://images.unsplash.com/photo-1585478259715-4d3a04c8a398?w=800', 0);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (3, 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800', 1);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (3, 'https://images.unsplash.com/photo-1549931319-a545dcf3bc7b?w=800', 2);
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (3, 'Nguyễn Văn An', 5, 'Vỏ giòn, ruột dai, hương vị lên men rất tự nhiên!', NOW());
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (3, 'Trần Thị Mai', 5, 'Bánh mì ngon nhất tôi từng ăn, sẽ mua định kỳ.', NOW());
+
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Signature Sourdough Bread' LIMIT 1), 'https://i.pinimg.com/736x/30/9d/63/309d63c5fb68a856a69a0803ecd90068.jpg', 0);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Signature Sourdough Bread' LIMIT 1), 'https://i.pinimg.com/1200x/05/35/57/05355798c8ae1ec510b1c26f93a16f1e.jpg', 1);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Signature Sourdough Bread' LIMIT 1), 'https://i.pinimg.com/736x/9a/a1/e6/9aa1e6b241e858608af1c5b947b6430c.jpg', 2);
+
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Signature Sourdough Bread' LIMIT 1), 'Nguyễn Văn An', 5, 'Vỏ giòn, ruột dai, hương vị lên men rất tự nhiên!', NOW());
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Signature Sourdough Bread' LIMIT 1), 'Trần Thị Mai', 5, 'Bánh mì ngon nhất tôi từng ăn, sẽ mua định kỳ.', NOW());
+
 
 -- ==================== SẢN PHẨM 4 ====================
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
@@ -68,11 +77,14 @@ VALUES (
            'Bột hạnh nhân,Đường bột,Lòng trắng trứng,Dâu tây tươi,Kem tươi',
            true
        );
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (4, 'https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=800', 0);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (4, 'https://images.unsplash.com/photo-1558326567-98ae2405596b?w=800', 1);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (4, 'https://images.unsplash.com/photo-1612809075429-d76f5f6eacb6?w=800', 2);
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (4, 'Võ Thị Bích', 5, 'Macaron vỏ giòn, nhân kem dâu tươi ngon xuất sắc!', NOW());
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (4, 'Đinh Hoàng Nam', 4, 'Đẹp mắt, ngon miệng, đóng gói cẩn thận.', NOW());
+
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Strawberry Macaron Box' LIMIT 1), 'https://i.pinimg.com/736x/38/70/22/38702204789a6531c5ad8f8ba9c1c982.jpg', 0);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Strawberry Macaron Box' LIMIT 1), 'https://i.pinimg.com/736x/d2/08/c7/d208c7e2f5509c9bc8e2044c582ca304.jpg', 1);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Strawberry Macaron Box' LIMIT 1), 'https://i.pinimg.com/1200x/67/f3/57/67f35778aed17258ba89bd943e930c78.jpg', 2);
+
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Strawberry Macaron Box' LIMIT 1), 'Võ Thị Bích', 5, 'Macaron vỏ giòn, nhân kem dâu tươi ngon xuất sắc!', NOW());
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Strawberry Macaron Box' LIMIT 1), 'Đinh Hoàng Nam', 4, 'Đẹp mắt, ngon miệng, đóng gói cẩn thận.', NOW());
+
 
 -- ==================== SẢN PHẨM 5 ====================
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
@@ -87,11 +99,14 @@ VALUES (
            'Bột mì,Bơ nhạt,Đường,Trứng gà,Vanilla Madagascar,Kem tươi',
            true
        );
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (5, 'https://images.unsplash.com/photo-1519869325930-281384150729?w=800', 0);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (5, 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=800', 1);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (5, 'https://images.unsplash.com/photo-1587668178277-295251f900ce?w=800', 2);
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (5, 'Nguyễn Thị Thu', 5, 'Tặng người yêu cực kỳ ý nghĩa, bánh ngon và đẹp!', NOW());
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (5, 'Lý Minh Khoa', 5, 'Buttercream không quá ngọt, rất vừa miệng.', NOW());
+
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Valentine Cupcakes' LIMIT 1), 'https://i.pinimg.com/1200x/9b/98/c7/9b98c7ec8a35300f627cad7047c9563e.jpg', 0);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Valentine Cupcakes' LIMIT 1), 'https://i.pinimg.com/1200x/93/f1/50/93f150fa54545c8e3b3bde8179bae25b.jpg', 1);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Valentine Cupcakes' LIMIT 1), 'https://i.pinimg.com/736x/b6/e2/3e/b6e23e64fcefb5650bc8753f360b6359.jpg', 2);
+
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Valentine Cupcakes' LIMIT 1), 'Nguyễn Thị Thu', 5, 'Tặng người yêu cực kỳ ý nghĩa, bánh ngon và đẹp!', NOW());
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Valentine Cupcakes' LIMIT 1), 'Lý Minh Khoa', 5, 'Buttercream không quá ngọt, rất vừa miệng.', NOW());
+
 
 -- ==================== SẢN PHẨM 6 ====================
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
@@ -106,11 +121,14 @@ VALUES (
            'Bơ AOP Pháp,Vanilla bean Madagascar,Bột mì,Đường mía,Trứng gà thả vườn',
            true
        );
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (6, 'https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=800', 0);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (6, 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=800', 1);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (6, 'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=800', 2);
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (6, 'Trần Thanh Tuyền', 5, 'Vanilla thơm tự nhiên, không ngửi mùi hóa chất.', NOW());
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (6, 'Hoàng Đức Thịnh', 4, 'Ngon, đóng gói đẹp, phù hợp làm quà tặng.', NOW());
+
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Vanilla Buttercream Cupcakes' LIMIT 1), 'https://i.pinimg.com/1200x/95/0a/0a/950a0a62dcebd0b0d9721751c7367d0e.jpg', 0);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Vanilla Buttercream Cupcakes' LIMIT 1), 'https://i.pinimg.com/736x/d2/68/76/d268767e9fe329d7bea9bfb3da683a54.jpg', 1);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Vanilla Buttercream Cupcakes' LIMIT 1), 'https://i.pinimg.com/736x/a7/99/54/a79954a884dda23f91291ac0cfb18986.jpg', 2);
+
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Vanilla Buttercream Cupcakes' LIMIT 1), 'Trần Thanh Tuyền', 5, 'Vanilla thơm tự nhiên, không ngửi mùi hóa chất.', NOW());
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Vanilla Buttercream Cupcakes' LIMIT 1), 'Hoàng Đức Thịnh', 4, 'Ngon, đóng gói đẹp, phù hợp làm quà tặng.', NOW());
+
 
 -- ==================== SẢN PHẨM 7 ====================
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
@@ -125,11 +143,14 @@ VALUES (
            'Matcha Uji Nhật Bản,Kem tươi 35%,Trứng gà,Bột mì,Đường,Bơ nhạt',
            true
        );
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (7, 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800', 0);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (7, 'https://images.unsplash.com/photo-1548365328-8c6db3220e4d?w=800', 1);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (7, 'https://images.unsplash.com/photo-1607478900766-efe13248b125?w=800', 2);
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (7, 'Phạm Thị Linh', 5, 'Matcha thơm đúng chuẩn Nhật, không bị đắng gắt!', NOW());
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (7, 'Bùi Quang Huy', 5, 'Kem tươi mát, bánh mềm, ăn một lần là ghiền.', NOW());
+
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Matcha Cream Roll Cake' LIMIT 1), 'https://i.pinimg.com/1200x/ab/4a/e5/ab4ae58febbddfcc24a2539740847ae0.jpg', 0);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Matcha Cream Roll Cake' LIMIT 1), 'https://i.pinimg.com/736x/5e/9c/d4/5e9cd4f6df6b73bbbfd79cb7636f811e.jpg', 1);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Matcha Cream Roll Cake' LIMIT 1), 'https://i.pinimg.com/736x/cc/1b/f7/cc1bf7fa1c5dc8450ccb37b39a4b6a51.jpg', 2);
+
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Matcha Cream Roll Cake' LIMIT 1), 'Phạm Thị Linh', 5, 'Matcha thơm đúng chuẩn Nhật, không bị đắng gắt!', NOW());
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Matcha Cream Roll Cake' LIMIT 1), 'Bùi Quang Huy', 5, 'Kem tươi mát, bánh mềm, ăn một lần là ghiền.', NOW());
+
 
 -- ==================== SẢN PHẨM 8 ====================
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
@@ -144,11 +165,14 @@ VALUES (
            'Bơ AOP Charentes-Poitou,Bột mì T45,Men nở,Muối,Sữa tươi,Đường',
            true
        );
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (8, 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800', 0);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (8, 'https://images.unsplash.com/photo-1623334044303-241021148842?w=800', 1);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (8, 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?w=800', 2);
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (8, 'Lê Văn Đức', 5, 'Croissant giòn tan, bơ thơm, đúng chuẩn Pháp!', NOW());
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (8, 'Nguyễn Bảo Châu', 5, 'Ăn kèm cà phê sáng thì không gì bằng.', NOW());
+
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Croissant Beurre AOP' LIMIT 1), 'https://i.pinimg.com/1200x/ff/f4/ac/fff4ac614be3b1154adefe7a97fa2476.jpg', 0);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Croissant Beurre AOP' LIMIT 1), 'https://i.pinimg.com/736x/d1/03/21/d103213d7a41621227147a43a7ff06b8.jpg', 1);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Croissant Beurre AOP' LIMIT 1), 'https://i.pinimg.com/736x/ef/28/f0/ef28f057274dc03db130c5453e4ea253.jpg', 2);
+
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Croissant Beurre AOP' LIMIT 1), 'Lê Văn Đức', 5, 'Croissant giòn tan, bơ thơm, đúng chuẩn Pháp!', NOW());
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Croissant Beurre AOP' LIMIT 1), 'Nguyễn Bảo Châu', 5, 'Ăn kèm cà phê sáng thì không gì bằng.', NOW());
+
 
 -- ==================== SẢN PHẨM 9 ====================
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
@@ -163,11 +187,14 @@ VALUES (
            'Chanh vàng Provence,Bơ AOP,Trứng gà,Đường,Bột mì T55,Lòng trắng trứng',
            true
        );
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (9, 'https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=800', 0);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (9, 'https://images.unsplash.com/photo-1568051243858-533a607809a5?w=800', 1);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (9, 'https://images.unsplash.com/photo-1587314168485-3236d6710814?w=800', 2);
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (9, 'Trương Thị Hạnh', 5, 'Lemon curd chua nhẹ, meringue ngọt vừa, tuyệt vời!', NOW());
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (9, 'Vũ Minh Tuấn', 4, 'Vỏ tart giòn tan, nhân mịn màng. Rất ấn tượng!', NOW());
+
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Lemon Tart Provence' LIMIT 1), 'https://i.pinimg.com/1200x/ed/e8/a3/ede8a30b7796ce7932610408ddeebec4.jpg', 0);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Lemon Tart Provence' LIMIT 1), 'https://i.pinimg.com/736x/68/87/f1/6887f11e8c77012979adffba2dba5a03.jpg', 1);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Lemon Tart Provence' LIMIT 1), 'https://i.pinimg.com/736x/93/1e/7c/931e7c26de3b6376f34715d7c2d3ae9c.jpg', 2);
+
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Lemon Tart Provence' LIMIT 1), 'Trương Thị Hạnh', 5, 'Lemon curd chua nhẹ, meringue ngọt vừa, tuyệt vời!', NOW());
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Lemon Tart Provence' LIMIT 1), 'Vũ Minh Tuấn', 4, 'Vỏ tart giòn tan, nhân mịn màng. Rất ấn tượng!', NOW());
+
 
 -- ==================== SẢN PHẨM 10 ====================
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
@@ -182,8 +209,10 @@ VALUES (
            'Mascarpone Ý,Trứng gà tươi,Espresso nguyên chất,Bánh ladyfinger,Đường,Cacao nguyên chất',
            true
        );
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (10, 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800', 0);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (10, 'https://images.unsplash.com/photo-1551529834-525807d6b4f3?w=800', 1);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES (10, 'https://images.unsplash.com/photo-1568051243851-f9b136146e97?w=800', 2);
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (10, 'Đặng Thị Phương', 5, 'Tiramisu đúng vị Ý, cà phê thơm, mascarpone béo ngậy!', NOW());
-INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES (10, 'Cao Văn Long', 5, 'Ngon không thua gì nhà hàng Ý chính hiệu!', NOW());
+
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Tiramisu Classico' LIMIT 1), 'https://i.pinimg.com/736x/15/10/17/1510174879cf77169e64a5c82ae973c1.jpg', 0);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Tiramisu Classico' LIMIT 1), 'https://i.pinimg.com/736x/8f/dd/a5/8fdda5e47db5a90879a2cee8002fb345.jpg', 1);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Tiramisu Classico' LIMIT 1), 'https://i.pinimg.com/1200x/11/36/4d/11364d08134253c7d88052095ef5a67e.jpg', 2);
+
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Tiramisu Classico' LIMIT 1), 'Đặng Thị Phương', 5, 'Tiramisu đúng vị Ý, cà phê thơm, mascarpone béo ngậy!', NOW());
+INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Tiramisu Classico' LIMIT 1), 'Cao Văn Long', 5, 'Ngon không thua gì nhà hàng Ý chính hiệu!', NOW());
