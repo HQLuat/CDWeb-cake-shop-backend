@@ -1,6 +1,10 @@
 package vn.edu.hcmuaf.fit.cakeshop.modules.order.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -94,12 +98,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<OrderResponse> getMyOrders() {
+    public Page<OrderResponse> getMyOrders(String keyword, OrderStatus orderStatus, PaymentStatus paymentStatus, int page, int size) {
         User user = getCurrentUser();
-        List<Order> orders = orderRepository.findByUserIdOrderByCreatedAtDesc(user.getId());
-        return orders.stream()
-                .map(OrderResponse::fromEntity)
-                .collect(Collectors.toList());
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("createdAt").descending());
+        return orderRepository.findPageByUserId(user.getId(), keyword, orderStatus, paymentStatus, pageable)
+                .map(OrderResponse::fromEntity);
     }
 
     @Override
@@ -119,11 +122,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<OrderResponse> getAllOrders() {
-        List<Order> orders = orderRepository.findAllByOrderByCreatedAtDesc();
-        return orders.stream()
-                .map(OrderResponse::fromEntity)
-                .collect(Collectors.toList());
+    public Page<OrderResponse> getAllOrders(String keyword, OrderStatus orderStatus, PaymentStatus paymentStatus, int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("createdAt").descending());
+        return orderRepository.findAllWithFilters(keyword, orderStatus, paymentStatus, pageable)
+                .map(OrderResponse::fromEntity);
     }
 
     @Override
