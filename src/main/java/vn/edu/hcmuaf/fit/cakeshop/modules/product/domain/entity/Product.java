@@ -26,21 +26,26 @@ public class Product {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
+    // Giá hiệu lực — bằng price khi không có promo, bằng discountedPrice khi đang giảm giá
+    // Tất cả API public đọc field này thay vì price
+    @Column(name = "current_price", precision = 10, scale = 2)
+    private BigDecimal currentPrice;
+
     @Column(columnDefinition = "TEXT")
     private String description;
 
     @Column(columnDefinition = "TEXT")
-    private String detailDescription; // nội dung tab "Mô tả chi tiết"
+    private String detailDescription;
 
     @Column(columnDefinition = "TEXT")
-    private String storageGuide; // nội dung tab "Hướng dẫn bảo quản"
+    private String storageGuide;
 
-    private String collection; // VD: "Signature Collection"
+    private String collection;
 
     private String shippingInfo;
 
     @Column(columnDefinition = "TEXT")
-    private String ingredients; // lưu dạng JSON string hoặc comma-separated
+    private String ingredients;
 
     private Boolean freshGuarantee = true;
 

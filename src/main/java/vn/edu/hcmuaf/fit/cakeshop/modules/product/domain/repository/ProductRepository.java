@@ -8,12 +8,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import vn.edu.hcmuaf.fit.cakeshop.modules.product.domain.entity.Product;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    // Fetch product cùng images và reviews trong 1 query (tránh N+1)
+    // Fetch product kèm images theo id — dùng trong CartService
     @Query("""
         SELECT DISTINCT p FROM Product p
         LEFT JOIN FETCH p.images
@@ -21,6 +22,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     """)
     Optional<Product> findByIdWithImages(@Param("id") Long id);
 
+    // Tìm kiếm có filter — dùng trong ProductService
     @Query("""
         SELECT DISTINCT p FROM Product p
         LEFT JOIN FETCH p.images
@@ -36,4 +38,12 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             @Param("maxPrice") double maxPrice,
             Pageable pageable
     );
+
+    // Query 1: load tất cả products kèm images (dùng cho PromotionService - bước 1)
+    @Query("SELECT DISTINCT p FROM Product p LEFT JOIN FETCH p.images")
+    List<Product> findAllWithImages();
+
+    // Query 2: load tất cả products kèm reviews (dùng cho PromotionService - bước 2)
+    @Query("SELECT DISTINCT p FROM Product p LEFT JOIN FETCH p.reviews")
+    List<Product> findAllWithReviews();
 }

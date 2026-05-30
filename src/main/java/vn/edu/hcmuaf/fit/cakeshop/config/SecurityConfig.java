@@ -48,6 +48,8 @@ public class SecurityConfig {
                         // Public
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/products/**").permitAll()
+                        .requestMatchers("/api/products/promotions").permitAll()
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/payment/vnpay/return").permitAll()
 
                         // Swagger

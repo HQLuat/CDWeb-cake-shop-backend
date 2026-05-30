@@ -216,3 +216,6 @@ INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((S
 
 INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Tiramisu Classico' LIMIT 1), 'Đặng Thị Phương', 5, 'Tiramisu đúng vị Ý, cà phê thơm, mascarpone béo ngậy!', NOW());
 INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Tiramisu Classico' LIMIT 1), 'Cao Văn Long', 5, 'Ngon không thua gì nhà hàng Ý chính hiệu!', NOW());
+
+
+UPDATE products SET current_price = price WHERE current_price IS NULL;
