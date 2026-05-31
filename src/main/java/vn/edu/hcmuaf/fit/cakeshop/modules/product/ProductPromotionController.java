@@ -15,9 +15,8 @@ public class ProductPromotionController {
 
     private final PromotionService promotionService;
 
-    // GET /api/products/promotions — public, permit bởi /api/products/** trong SecurityConfig
     @GetMapping
     public ResponseEntity<List<PromotionDTO.PromotionProductResponse>> getPublicPromos() {
-        return ResponseEntity.ok(promotionService.getAllWithPromoInfo());
+        return ResponseEntity.ok(promotionService.getActivePromotions());
     }
 }

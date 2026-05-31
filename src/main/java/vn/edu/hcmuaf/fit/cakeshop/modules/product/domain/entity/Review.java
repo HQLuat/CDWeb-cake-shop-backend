@@ -5,7 +5,13 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "reviews")
+@Table(
+        name = "reviews",
+        uniqueConstraints = {
+                // Cùng product + cùng customerName + cùng comment thì không insert lại
+                @UniqueConstraint(name = "uk_review_product_customer_comment", columnNames = {"product_id", "customer_name", "comment"})
+        }
+)
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class Review {
 

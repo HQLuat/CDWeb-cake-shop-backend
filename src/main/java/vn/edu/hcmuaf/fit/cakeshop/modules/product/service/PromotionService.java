@@ -11,6 +11,7 @@ import vn.edu.hcmuaf.fit.cakeshop.modules.product.domain.repository.PromotionRep
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -22,31 +23,69 @@ public class PromotionService {
     private final ProductRepository productRepository;
     private final PromotionRepository promotionRepository;
 
-    // --- Lấy tất cả sản phẩm kèm thông tin discount ---
-    // Tách 2 query riêng để tránh MultipleBagFetchException
+    // --- Admin: tất cả sản phẩm kèm discount info ---
     @Transactional(readOnly = true)
     public List<PromotionDTO.PromotionProductResponse> getAllWithPromoInfo() {
-        // Query 1: load products + images
-        List<Product> products = productRepository.findAllWithImages();
+        List<Product> productsWithImages = productRepository.findAllWithImages();
+        List<Product> productsWithReviews = productRepository.findAllWithReviews();
 
-        // Query 2: load reviews vào đúng các product đã có (Hibernate merge vào 1st-level cache)
-        productRepository.findAllWithReviews();
+        Map<Long, Product> reviewMap = productsWithReviews.stream()
+                .collect(Collectors.toMap(Product::getId, p -> p));
 
-        // Query 3: load promotions
         Map<Long, Promotion> promoMap = promotionRepository.findAll()
                 .stream()
                 .collect(Collectors.toMap(p -> p.getProduct().getId(), p -> p));
 
-        return products.stream()
-                .map(p -> toResponse(p, promoMap.get(p.getId())))
+        return productsWithImages.stream()
+                .map(p -> toResponse(p, reviewMap.get(p.getId()), promoMap.get(p.getId())))
                 .collect(Collectors.toList());
+    }
+
+    // --- Public: CHỈ sản phẩm đang có khuyến mãi ---
+    // @Transactional giữ session mở → lazy load product/images/reviews hoạt động bình thường
+    @Transactional(readOnly = true)
+    public List<PromotionDTO.PromotionProductResponse> getActivePromotions() {
+        List<Promotion> promos = promotionRepository.findAllPromotions();
+
+        return promos.stream().map(promo -> {
+            Product p = promo.getProduct(); // lazy load — OK vì còn trong transaction
+
+            // Trigger load images & reviews trong session
+            List<String> imageUrls = p.getImages() == null ? List.of()
+                    : p.getImages().stream()
+                    .sorted(Comparator.comparingInt(img ->
+                            img.getSortOrder() != null ? img.getSortOrder() : 0))
+                    .map(img -> img.getImageUrl())
+                    .collect(Collectors.toList());
+
+            double avgRating = p.getReviews() == null || p.getReviews().isEmpty() ? 0.0
+                    : p.getReviews().stream()
+                    .mapToInt(r -> r.getRating())
+                    .average()
+                    .orElse(0.0);
+
+            int totalReviews = p.getReviews() == null ? 0 : p.getReviews().size();
+
+            return new PromotionDTO.PromotionProductResponse(
+                    p.getId(),
+                    p.getName(),
+                    p.getDescription(),
+                    p.getCollection(),
+                    p.getPrice(),
+                    p.getCurrentPrice() != null ? p.getCurrentPrice() : p.getPrice(),
+                    avgRating,
+                    totalReviews,
+                    imageUrls,
+                    promo.getDiscountPercent(),
+                    promo.getDiscountedPrice()
+            );
+        }).collect(Collectors.toList());
     }
 
     // --- Áp dụng / cập nhật giảm giá 1 sản phẩm ---
     @Transactional
     public PromotionDTO.PromotionProductResponse applyPromotion(PromotionDTO.ApplyPromotionRequest req) {
         Product product = findProduct(req.productId());
-
         BigDecimal discounted = calcDiscounted(product.getPrice(), req.discountPercent());
 
         Promotion promo = promotionRepository.findByProductId(req.productId())
@@ -58,7 +97,27 @@ public class PromotionService {
         product.setCurrentPrice(discounted);
         productRepository.save(product);
 
-        return toResponse(product, promo);
+        // Build response trực tiếp không qua lazy load
+        List<String> imageUrls = product.getImages() == null ? List.of()
+                : product.getImages().stream()
+                .sorted(Comparator.comparingInt(img ->
+                        img.getSortOrder() != null ? img.getSortOrder() : 0))
+                .map(img -> img.getImageUrl())
+                .collect(Collectors.toList());
+
+        double avgRating = product.getReviews() == null || product.getReviews().isEmpty() ? 0.0
+                : product.getReviews().stream()
+                .mapToInt(r -> r.getRating())
+                .average()
+                .orElse(0.0);
+
+        return new PromotionDTO.PromotionProductResponse(
+                product.getId(), product.getName(), product.getDescription(),
+                product.getCollection(), product.getPrice(),
+                product.getCurrentPrice(), avgRating,
+                product.getReviews() == null ? 0 : product.getReviews().size(),
+                imageUrls, promo.getDiscountPercent(), promo.getDiscountedPrice()
+        );
     }
 
     // --- Áp dụng hàng loạt ---
@@ -74,7 +133,6 @@ public class PromotionService {
     public void removePromotion(Long productId) {
         Product product = findProduct(productId);
         promotionRepository.deleteByProductId(productId);
-
         product.setCurrentPrice(product.getPrice());
         productRepository.save(product);
     }
@@ -92,29 +150,36 @@ public class PromotionService {
                 .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
     }
 
-    private PromotionDTO.PromotionProductResponse toResponse(Product p, Promotion promo) {
-        List<String> imageUrls = p.getImages() == null ? List.of()
-                : p.getImages().stream()
+    private PromotionDTO.PromotionProductResponse toResponse(
+            Product productWithImages,
+            Product productWithReviews,
+            Promotion promo) {
+
+        List<String> imageUrls = productWithImages.getImages() == null ? List.of()
+                : productWithImages.getImages().stream()
+                .sorted(Comparator.comparingInt(img ->
+                        img.getSortOrder() != null ? img.getSortOrder() : 0))
                 .map(img -> img.getImageUrl())
                 .collect(Collectors.toList());
 
-        double avgRating = p.getReviews() == null || p.getReviews().isEmpty() ? 0.0
-                : p.getReviews().stream()
+        double avgRating = productWithReviews == null
+                || productWithReviews.getReviews() == null
+                || productWithReviews.getReviews().isEmpty() ? 0.0
+                : productWithReviews.getReviews().stream()
                 .mapToInt(r -> r.getRating())
                 .average()
                 .orElse(0.0);
-        int totalReviews = p.getReviews() == null ? 0 : p.getReviews().size();
 
+        int totalReviews = productWithReviews == null
+                || productWithReviews.getReviews() == null ? 0
+                : productWithReviews.getReviews().size();
+
+        Product p = productWithImages;
         return new PromotionDTO.PromotionProductResponse(
-                p.getId(),
-                p.getName(),
-                p.getDescription(),
-                p.getCollection(),
+                p.getId(), p.getName(), p.getDescription(), p.getCollection(),
                 p.getPrice(),
                 p.getCurrentPrice() != null ? p.getCurrentPrice() : p.getPrice(),
-                avgRating,
-                totalReviews,
-                imageUrls,
+                avgRating, totalReviews, imageUrls,
                 promo != null ? promo.getDiscountPercent() : null,
                 promo != null ? promo.getDiscountedPrice() : null
         );
