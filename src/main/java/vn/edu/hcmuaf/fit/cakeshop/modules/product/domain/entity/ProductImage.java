@@ -4,7 +4,13 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "product_images")
+@Table(
+        name = "product_images",
+        uniqueConstraints = {
+                // Cùng product + cùng imageUrl thì không insert lại
+                @UniqueConstraint(name = "uk_product_image_url", columnNames = {"product_id", "image_url"})
+        }
+)
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class ProductImage {
 

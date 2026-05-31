@@ -12,8 +12,8 @@ VALUES (
            true
        );
 
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Red Velvet Muse Cake' LIMIT 1), 'https://i.pinimg.com/736x/df/91/15/df9115d746533697591d7c37d93ccf8c.jpg', 0);
-INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Red Velvet Muse Cake' LIMIT 1), 'https://i.pinimg.com/736x/79/0c/8b/790c8b07d5869dee8ceab42ea5ed8d8f.jpg', 1);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Red Velvet Muse Cake' LIMIT 1), 'https://i.pinimg.com/736x/79/0c/8b/790c8b07d5869dee8ceab42ea5ed8d8f.jpg', 0);
+INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Red Velvet Muse Cake' LIMIT 1), 'https://i.pinimg.com/736x/df/91/15/df9115d746533697591d7c37d93ccf8c.jpg', 1);
 INSERT IGNORE INTO product_images (product_id, image_url, sort_order) VALUES ((SELECT id FROM products WHERE name = 'Red Velvet Muse Cake' LIMIT 1), 'https://i.pinimg.com/736x/50/94/5c/50945cc192b4c0d8cb37669447fe2531.jpg', 2);
 
 INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_at) VALUES ((SELECT id FROM products WHERE name = 'Red Velvet Muse Cake' LIMIT 1), 'Nguyễn Thị Lan', 5, 'Bánh ngon tuyệt vời, kem cheese rất mịn!', NOW());

@@ -15,6 +15,8 @@ public record ProductDetailDTO (
         Long id,
         String name,
         BigDecimal price,
+        BigDecimal currentPrice,
+        Integer discountPercent,
         String description,
         String detailDescription,
         String storageGuide,
@@ -22,25 +24,17 @@ public record ProductDetailDTO (
         String shippingInfo,
         List<String> ingredients,
         Boolean freshGuarantee,
-
-        // Rating tổng hợp (tính từ reviews)
         Double averageRating,
         Integer totalReviews,
-
-        // Danh sách ảnh
-        List<String> imageUrls, // index 0 = ảnh chính
-
-        // Danh sách đánh giá
+        List<String> imageUrls,
         List<ReviewDTO> reviews
 ) {
     public static ProductDetailDTO fromEntity(Product product, Double avgRating, Long totalReviews, List<Review> reviews) {
 
-        // Logic xử lý nguyên liệu (từ String -> List)
         List<String> ingredientList = (product.getIngredients() != null && !product.getIngredients().isBlank())
                 ? Arrays.asList(product.getIngredients().split(","))
                 : Collections.emptyList();
 
-        // Logic xử lý và sắp xếp ảnh (sortOrder=0 lên đầu)
         List<String> imageUrls = product.getImages() != null
                 ? product.getImages().stream()
                 .sorted((a, b) -> Integer.compare(a.getSortOrder(), b.getSortOrder()))
@@ -48,16 +42,32 @@ public record ProductDetailDTO (
                 .collect(Collectors.toList())
                 : Collections.emptyList();
 
-        // Chuyển đổi list review sang DTO (Giả sử ReviewDTO cũng có phương thức từ Entity)
         List<ReviewDTO> reviewDTOs = reviews.stream()
                 .map(ReviewDTO::fromEntity)
                 .collect(Collectors.toList());
 
-        // Trả về instance của record
+        // Lấy thông tin khuyến mãi từ product entity
+        BigDecimal currentPrice = product.getCurrentPrice() != null
+                ? product.getCurrentPrice()
+                : product.getPrice();
+
+        Integer discountPercent = null;
+        if (product.getCurrentPrice() != null
+                && product.getCurrentPrice().compareTo(product.getPrice()) < 0) {
+            // Tính lại % nếu entity không lưu trực tiếp
+            // Hoặc lấy từ promotion nếu có
+            discountPercent = product.getPrice().subtract(product.getCurrentPrice())
+                    .multiply(BigDecimal.valueOf(100))
+                    .divide(product.getPrice(), 0, java.math.RoundingMode.HALF_UP)
+                    .intValue();
+        }
+
         return new ProductDetailDTO(
                 product.getId(),
                 product.getName(),
                 product.getPrice(),
+                currentPrice,
+                discountPercent,
                 product.getDescription(),
                 product.getDetailDescription(),
                 product.getStorageGuide(),
