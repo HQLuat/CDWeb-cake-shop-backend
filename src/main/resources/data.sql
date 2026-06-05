@@ -2,7 +2,7 @@
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
 VALUES (
            'Red Velvet Muse Cake',
-           45.00,
+           45000.00,
            'Chiếc bánh Red Velvet đặc trưng với kết cấu mềm mịn như nhung, kết hợp lớp kem cheese tươi mát.',
            'Mỗi chiếc bánh Red Velvet Muse là một tác phẩm nghệ thuật thủ công. Chúng tôi sử dụng phương pháp trộn bột truyền thống, màu đỏ chiết xuất từ củ dền hữu cơ.',
            'Bảo quản trong ngăn mát tủ lạnh, dùng trong vòng 3 ngày.',
@@ -24,7 +24,7 @@ INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
 VALUES (
            'Chocolate Fudge Truffle Cheesecake',
-           52.00,
+           52000.00,
            'Cheesecake socola đậm đà với lớp truffle tan chảy, phủ ganache bóng mượt.',
            'Được làm từ socola Bỉ nguyên chất 70% cacao, kết hợp phô mai Philadelphia cao cấp. Mỗi lớp được xếp tỉ mỉ để tạo nên hương vị layered hoàn hảo.',
            'Bảo quản ngăn mát 0-4°C, dùng trong 4 ngày. Không để đông đá.',
@@ -46,7 +46,7 @@ INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
 VALUES (
            'Signature Sourdough Bread',
-           12.00,
+           12000.00,
            'Bánh mì sourdough lên men 72 giờ với vỏ ngoài giòn tan, ruột dai mềm và hương vị phức tạp.',
            'Bánh mì sourdough được ủ với men tự nhiên truyền thống qua 72 giờ lên men chậm. Vỏ bánh được nướng ở nhiệt độ cao tạo nên lớp vỏ giòn đặc trưng, ruột bánh có cấu trúc lỗ hổng lớn đẹp mắt.',
            'Bảo quản ở nhiệt độ phòng trong túi vải, dùng trong 2 ngày. Có thể hâm nóng lò 180°C trong 5 phút.',
@@ -68,7 +68,7 @@ INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
 VALUES (
            'Strawberry Macaron Box',
-           6.50,
+           6500.00,
            'Hộp macaron dâu tây tinh tế với vỏ ngoài giòn nhẹ, nhân kem dâu tươi mát.',
            'Macaron được làm theo công thức Pháp truyền thống với bột hạnh nhân xay mịn. Nhân kem dâu tây tươi được làm mới mỗi ngày, không dùng hương liệu nhân tạo.',
            'Bảo quản ngăn mát, dùng trong 3 ngày. Lấy ra khỏi tủ lạnh 15 phút trước khi ăn để đạt hương vị tốt nhất.',
@@ -90,7 +90,7 @@ INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
 VALUES (
            'Valentine Cupcakes',
-           8.00,
+           8000.00,
            'Cupcake Valentine ngọt ngào với lớp buttercream hoa hồng và trang trí trái tim.',
            'Mỗi chiếc cupcake được nướng từ bột vanilla Madagascar và phủ lớp buttercream Thụy Sĩ đánh bông mịn. Trang trí thủ công bằng kỹ thuật piping hoa hồng tinh tế.',
            'Bảo quản nhiệt độ phòng trong 1 ngày hoặc ngăn mát 3 ngày. Không để trực tiếp dưới ánh nắng.',
@@ -112,7 +112,7 @@ INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
 VALUES (
            'Vanilla Buttercream Cupcakes',
-           24.00,
+           24000.00,
            'Hộp 6 cupcake vanilla với lớp buttercream bơ Pháp mịn màng, thơm ngát.',
            'Cupcake vanilla được làm từ vanilla bean thật nhập khẩu từ Madagascar. Lớp buttercream được đánh theo kỹ thuật Pháp với bơ AOP để tạo nên kết cấu mịn như lụa.',
            'Bảo quản ngăn mát, dùng trong 3 ngày. Để ở nhiệt độ phòng 20 phút trước khi thưởng thức.',
@@ -134,7 +134,7 @@ INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
 VALUES (
            'Matcha Cream Roll Cake',
-           38.00,
+           38000.00,
            'Bánh cuộn matcha Uji Nhật Bản với nhân kem tươi béo ngậy, thanh mát.',
            'Bánh cuộn sử dụng matcha ceremonial grade Uji từ Kyoto, Nhật Bản. Lớp bánh bông lan mềm mịn được cuộn cùng nhân kem tươi đánh bông nhẹ nhàng, tạo nên sự cân bằng giữa vị đắng của matcha và độ béo của kem.',
            'Bảo quản ngăn mát 2-5°C, dùng trong 2 ngày. Không để đông đá.',
@@ -156,7 +156,7 @@ INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
 VALUES (
            'Croissant Beurre AOP',
-           4.50,
+           4500.00,
            'Bánh sừng bò bơ Pháp cán tay với 27 lớp bơ mỏng, giòn rụm bên ngoài, mềm xốp bên trong.',
            'Croissant được cán tay qua 6 lần gấp tạo nên 27 lớp bơ mỏng hoàn hảo. Sử dụng bơ AOP Charentes-Poitou nhập khẩu từ Pháp, ủ lạnh qua đêm để đạt hương vị tốt nhất.',
            'Ngon nhất khi ăn trong ngày. Có thể hâm lò 170°C trong 3 phút để lấy lại độ giòn.',
@@ -178,7 +178,7 @@ INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
 VALUES (
            'Lemon Tart Provence',
-           32.00,
+           32000.00,
            'Tart chanh vàng kiểu Provence với vỏ tart giòn, nhân lemon curd chua nhẹ và meringue nướng.',
            'Vỏ tart pâte sucrée được làm từ bột mì T55 và bơ AOP, nướng mù cho đến khi vàng đều. Nhân lemon curd được nấu từ chanh vàng Provence tươi, cân bằng giữa chua và ngọt. Phủ meringue Ý đánh bông và nướng đèn khò tạo hiệu ứng caramel đẹp mắt.',
            'Bảo quản ngăn mát, dùng trong 2 ngày. Không để đông đá vì meringue sẽ chảy nước.',
@@ -200,7 +200,7 @@ INSERT IGNORE INTO reviews (product_id, customer_name, rating, comment, created_
 INSERT IGNORE INTO products (name, price, description, detail_description, storage_guide, collection, shipping_info, ingredients, fresh_guarantee)
 VALUES (
            'Tiramisu Classico',
-           42.00,
+           42000.00,
            'Tiramisu truyền thống Ý với lớp mascarpone béo ngậy, thấm đượm cà phê espresso đậm đà.',
            'Tiramisu được làm theo công thức gốc từ vùng Veneto, Ý. Sử dụng phô mai mascarpone Ý nhập khẩu, trứng gà tươi đánh kiểu zabaglione truyền thống và espresso nguyên chất. Bánh được ủ lạnh 12 giờ để các lớp hòa quyện hoàn hảo.',
            'Bảo quản ngăn mát 2-5°C, dùng trong 3 ngày. Phục vụ lạnh để có hương vị tốt nhất.',
