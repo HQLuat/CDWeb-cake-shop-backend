@@ -26,7 +26,8 @@ public record ProductDetailDTO (
         Boolean freshGuarantee,
         Double averageRating,
         Integer totalReviews,
-        List<String> imageUrls,
+        List<String> imageUrls,          // Giữ nguyên cho backward-compat (public API / frontend khách)
+        List<ProductImageDTO> images,    // Thêm mới: dùng cho admin (có cloudinaryPublicId)
         List<ReviewDTO> reviews
 ) {
     public static ProductDetailDTO fromEntity(Product product, Double avgRating, Long totalReviews, List<Review> reviews) {
@@ -35,12 +36,19 @@ public record ProductDetailDTO (
                 ? Arrays.asList(product.getIngredients().split(","))
                 : Collections.emptyList();
 
-        List<String> imageUrls = product.getImages() != null
+        List<ProductImage> sortedImages = product.getImages() != null
                 ? product.getImages().stream()
-                .sorted((a, b) -> Integer.compare(a.getSortOrder(), b.getSortOrder()))
-                .map(ProductImage::getImageUrl)
-                .collect(Collectors.toList())
+                        .sorted((a, b) -> Integer.compare(a.getSortOrder(), b.getSortOrder()))
+                        .collect(Collectors.toList())
                 : Collections.emptyList();
+
+        List<String> imageUrls = sortedImages.stream()
+                .map(ProductImage::getImageUrl)
+                .collect(Collectors.toList());
+
+        List<ProductImageDTO> imageDTOs = sortedImages.stream()
+                .map(ProductImageDTO::fromEntity)
+                .collect(Collectors.toList());
 
         List<ReviewDTO> reviewDTOs = reviews.stream()
                 .map(ReviewDTO::fromEntity)
@@ -78,6 +86,7 @@ public record ProductDetailDTO (
                 avgRating != null ? Math.round(avgRating * 10.0) / 10.0 : 0.0,
                 totalReviews != null ? totalReviews.intValue() : 0,
                 imageUrls,
+                imageDTOs,
                 reviewDTOs
         );
     }

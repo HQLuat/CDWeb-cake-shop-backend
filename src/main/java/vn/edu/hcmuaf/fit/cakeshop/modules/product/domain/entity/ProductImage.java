@@ -25,5 +25,8 @@ public class ProductImage {
     @Column(nullable = false)
     private String imageUrl;
 
+    @Column(name = "cloudinary_public_id")
+    private String cloudinaryPublicId;
+
     private Integer sortOrder = 0; // ảnh chính có sortOrder = 0
 }

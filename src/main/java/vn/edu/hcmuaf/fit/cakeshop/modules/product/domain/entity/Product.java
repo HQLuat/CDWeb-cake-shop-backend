@@ -50,7 +50,7 @@ public class Product {
     private Boolean freshGuarantee = true;
 
     @BatchSize(size = 30)
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ProductImage> images;
 
     @BatchSize(size = 30)
