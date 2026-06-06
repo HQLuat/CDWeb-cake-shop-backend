@@ -25,6 +25,13 @@ public class AdminProductController {
         return ResponseEntity.ok(adminProductService.uploadProductImage(file));
     }
 
+    // DELETE /api/admin/products/delete-image — xóa ảnh tạm trên Cloudinary
+    @DeleteMapping("/delete-image")
+    public ResponseEntity<Void> deleteImage(@RequestParam("publicId") String publicId) {
+        adminProductService.deleteProductImage(publicId);
+        return ResponseEntity.ok().build();
+    }
+
     // POST /api/admin/products — tạo mới
     @PostMapping
     public ResponseEntity<ProductDetailDTO> create(@RequestBody AdminProductRequest request) {

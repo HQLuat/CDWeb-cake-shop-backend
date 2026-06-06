@@ -24,7 +24,9 @@ public record CartItemResponse(
                     .orElse(null);
         }
 
-        BigDecimal unitPrice = item.getProduct().getPrice();
+        BigDecimal unitPrice = item.getProduct().getCurrentPrice() != null
+                ? item.getProduct().getCurrentPrice()
+                : item.getProduct().getPrice();
         BigDecimal subtotal = unitPrice.multiply(BigDecimal.valueOf(item.getQuantity()));
 
         return new CartItemResponse(

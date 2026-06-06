@@ -15,4 +15,9 @@ public interface AdminProductService {
      * Endpoint riêng giúp preview trước khi lưu sản phẩm.
      */
     CloudinaryUploadResponse uploadProductImage(MultipartFile file);
+
+    /**
+     * Xóa một ảnh tạm hoặc ảnh đã upload khỏi Cloudinary qua publicId.
+     */
+    void deleteProductImage(String publicId);
 }

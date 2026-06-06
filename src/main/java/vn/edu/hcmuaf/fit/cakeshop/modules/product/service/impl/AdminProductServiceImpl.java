@@ -36,6 +36,13 @@ public class AdminProductServiceImpl implements AdminProductService {
     }
 
     @Override
+    public void deleteProductImage(String publicId) {
+        if (publicId != null && !publicId.isBlank()) {
+            cloudinaryService.deleteImage(publicId);
+        }
+    }
+
+    @Override
     @Transactional
     public ProductDetailDTO createProduct(AdminProductRequest req) {
         Product product = Product.builder()
