@@ -68,7 +68,9 @@ public class OrderServiceImpl implements OrderService {
 
         // Chuyển CartItem thành OrderItem
         List<OrderItem> orderItems = cart.getItems().stream().map(cartItem -> {
-            BigDecimal price = cartItem.getProduct().getPrice();
+            BigDecimal price = cartItem.getProduct().getCurrentPrice() != null
+                    ? cartItem.getProduct().getCurrentPrice()
+                    : cartItem.getProduct().getPrice();
             BigDecimal subtotal = price.multiply(BigDecimal.valueOf(cartItem.getQuantity()));
             return OrderItem.builder()
                     .order(order)
