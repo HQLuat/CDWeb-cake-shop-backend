@@ -5,6 +5,8 @@ import lombok.*;
 import vn.edu.hcmuaf.fit.cakeshop.modules.user.domain.entity.enums.UserRole;
 import vn.edu.hcmuaf.fit.cakeshop.modules.user.domain.entity.enums.UserStatus;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "users")
 @Getter
@@ -30,4 +32,8 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserStatus status;
+
+    @Builder.Default
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 }

@@ -10,6 +10,8 @@ import vn.edu.hcmuaf.fit.cakeshop.modules.order.domain.entity.Order;
 import vn.edu.hcmuaf.fit.cakeshop.modules.order.domain.entity.enums.OrderStatus;
 import vn.edu.hcmuaf.fit.cakeshop.modules.order.domain.entity.enums.PaymentStatus;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,4 +73,32 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             @Param("orderStatus") OrderStatus orderStatus,
             @Param("paymentStatus") PaymentStatus paymentStatus,
             Pageable pageable);
+
+    // ─── ANALYTICS QUERIES ────────────────────────────────────────────────────
+
+    long countByCreatedAtBetween(LocalDateTime from, LocalDateTime to);
+
+    long countByOrderStatusAndCreatedAtBetween(OrderStatus status, LocalDateTime from, LocalDateTime to);
+
+    @Query("SELECT COALESCE(SUM(o.totalAmount), 0) FROM Order o " +
+           "WHERE o.paymentStatus = 'PAID' AND o.createdAt BETWEEN :from AND :to")
+    BigDecimal sumRevenueByPaidStatus(@Param("from") LocalDateTime from, @Param("to") LocalDateTime to);
+
+    @Query("SELECT FUNCTION('DATE', o.createdAt), SUM(o.totalAmount) FROM Order o " +
+           "WHERE o.paymentStatus = 'PAID' AND o.createdAt BETWEEN :from AND :to " +
+           "GROUP BY FUNCTION('DATE', o.createdAt) ORDER BY FUNCTION('DATE', o.createdAt)")
+    List<Object[]> revenueGroupByDate(@Param("from") LocalDateTime from, @Param("to") LocalDateTime to);
+
+    @Query("SELECT o.orderStatus, COUNT(o) FROM Order o " +
+           "WHERE o.createdAt BETWEEN :from AND :to GROUP BY o.orderStatus")
+    List<Object[]> countByStatusInRange(@Param("from") LocalDateTime from, @Param("to") LocalDateTime to);
+
+    @Query("SELECT i.product.name, SUM(i.quantity), SUM(i.subtotal) FROM OrderItem i " +
+           "WHERE i.order.createdAt BETWEEN :from AND :to " +
+           "GROUP BY i.product.id, i.product.name ORDER BY SUM(i.quantity) DESC")
+    List<Object[]> topProductsByQuantity(@Param("from") LocalDateTime from,
+                                         @Param("to") LocalDateTime to,
+                                         Pageable pageable);
+
+    List<Order> findTop10ByOrderByCreatedAtDesc();
 }
