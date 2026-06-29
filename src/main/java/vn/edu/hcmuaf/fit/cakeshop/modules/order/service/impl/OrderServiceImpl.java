@@ -147,4 +147,26 @@ public class OrderServiceImpl implements OrderService {
         Order savedOrder = orderRepository.save(order);
         return OrderResponse.fromEntity(savedOrder);
     }
+
+    @Override
+    @Transactional
+    public OrderResponse confirmReceived(Long id) {
+        User user = getCurrentUser();
+        Order order = orderRepository.findByIdWithItems(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy đơn hàng với id: " + id));
+
+        if (!order.getUser().getId().equals(user.getId())) {
+            throw new RuntimeException("Bạn không có quyền xác nhận đơn hàng này");
+        }
+
+        if (order.getOrderStatus() != OrderStatus.SHIPPING) {
+            throw new RuntimeException("Chỉ có thể xác nhận đơn hàng đang được giao");
+        }
+
+        order.setOrderStatus(OrderStatus.COMPLETED);
+        order.setUpdatedAt(LocalDateTime.now());
+
+        Order savedOrder = orderRepository.save(order);
+        return OrderResponse.fromEntity(savedOrder);
+    }
 }
