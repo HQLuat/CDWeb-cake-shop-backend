@@ -12,6 +12,7 @@ public interface OrderService {
     OrderResponse createOrder(CreateOrderRequest request);
     OrderResponse getOrderById(Long id);
     OrderResponse updateOrderStatus(Long id, OrderStatus status);
+    OrderResponse confirmReceived(Long id);
 
     Page<OrderResponse> getMyOrders(String keyword, OrderStatus orderStatus, PaymentStatus paymentStatus, int page, int size);
     Page<OrderResponse> getAllOrders(String keyword, OrderStatus orderStatus, PaymentStatus paymentStatus, int page, int size);

@@ -101,4 +101,19 @@ public class OrderController {
                 orderService.updateOrderStatus(id, status)
         ));
     }
+
+    /**
+     * PUT /api/orders/{id}/confirm-received
+     * Khách hàng tự xác nhận đã nhận hàng (USER)
+     */
+    @PutMapping("/{id}/confirm-received")
+    @PreAuthorize("hasAnyRole('USER')")
+    public ResponseEntity<ApiResponse<OrderResponse>> confirmReceived(
+            @PathVariable Long id
+    ) {
+        return ResponseEntity.ok(ApiResponse.success(
+                "Xác nhận đã nhận hàng thành công",
+                orderService.confirmReceived(id)
+        ));
+    }
 }
