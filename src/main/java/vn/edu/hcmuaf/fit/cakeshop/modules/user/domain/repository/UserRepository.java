@@ -10,6 +10,7 @@ import vn.edu.hcmuaf.fit.cakeshop.modules.user.domain.entity.User;
 import vn.edu.hcmuaf.fit.cakeshop.modules.user.domain.entity.enums.UserRole;
 import vn.edu.hcmuaf.fit.cakeshop.modules.user.domain.entity.enums.UserStatus;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Repository
@@ -27,4 +28,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
                                     Pageable pageable);
 
     Optional<User> findByUsername(String username);
+
+    long countByCreatedAtBetween(LocalDateTime from, LocalDateTime to);
 }
